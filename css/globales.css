@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700&family=Koh+Santepheap:wght@100;300;400;700;900&family=Poppins:wght@100;200;300;400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+:root {
+  --font-title: "Koh Santepheap", serif;
+  --font-paragraph: "Poppins", sans-serif;
+  --font-button: "Khula", sans-serif;
+  --color-title: #2a2521;
+  --color-button-background: #ff8f1e;
+  --color-white: #fff;
+}
+
+.cart {
+  width: 40px;
+  size: 40px;
+}
+
+.toggle__menu-img {
+  width: 40px;
+  size: 40px;
+}
+
+.hero__button img {
+  width: 20px;
+  height: 20px;
+}
+
+.hero__button {
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background-color: none;
+}
+
+.buttonOrder {
+  padding: 5px;
+  background: var(--color-button-background);
+  color: var(--color-white);
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.buttonOrder:hover {
+  --color-button-background: rgba(
+    219,
+    183,
+    52,
+    0.499
+  ); /* Cambiar la variable CSS personalizada con rgba para hacer el color más opaco al pasar el mouse */
+  transition: background-color 0.3s; /* Transición suave para suavizar el cambio */
+}
+
+.smallTitle img {
+  width: 70px;
+  height: 70px;
+  transform: rotate(-14.463deg);
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  z-index: 10;
+}
+
+.arrow__left {
+  left: -2%;
+}
+
+.arrow__rigth {
+  right: -1.5%;
+}
+
+.cart__container {
+  padding: 1rem;
+}
+
+.cart__container-product {
+  border: 1px solid;
+  padding: 5px;
+}
+
+.cart__product {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  background: #ff8f1e;
+}
+
+.cart__product-current {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  width: 95%;
+
+  border: 1px solid;
+}
+
+.cart__product-current img {
+  width: 30px;
+  height: 63px;
+}
+
+.cart__product-current .product__image {
+  width: 70px;
+  height: 70px;
+}
+
+.cart__product-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Poppins;
+  gap: 1rem;
+  width: 95%;
+
+  border: 1px solid;
+}
+
+.cart__product-price p {
+  font-family: Poppins;
+  font-weight: bold;
+  padding: 0.5rem;
+  border: 1px solid;
+}
+
+.total__price {
+  text-align: center;
+  letter-spacing: 1.5px;
+  border: 1px solid;
+}
+
+.closetCart {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid;
+}
+
+.closetCart img {
+  width: 25px;
+}
