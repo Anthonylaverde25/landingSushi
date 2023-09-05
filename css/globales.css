@@ -17,7 +17,8 @@
 }
 
 .cart {
-  width: 40px;
+  cursor: pointer;
+  width: 35px;
   size: 40px;
 }
 
@@ -153,4 +154,23 @@
 
 .closetCart img {
   width: 25px;
+}
+
+.card-body .card__price {
+  background-color: #ff8f1e;
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  font-family: Poppins;
+}
+
+.card__price .price {
+}
+
+.card-title {
+  font-family: Koh Santepheap;
+}
+
+.card-text {
+  font-family: Poppins;
 }

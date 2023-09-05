@@ -488,8 +488,16 @@ ul.menu li a {
 /* menu desplegable version mobile */
 
 /* DISPLAY EN NONE. DEBEN PASAR A BLOCK Y A FLEX PARA MOSTRARSE */
-.overlay {
+
+.show {
+  display: flex;
+}
+
+.hidde {
   display: none;
+}
+.overlay {
+  /* display: flex;*/
   position: fixed;
   top: 0;
   left: 0;
@@ -504,7 +512,7 @@ ul.menu li a {
   position: fixed;
   left: 0;
   top: 0%;
-  display: none;
+  /* display: flex;*/
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -515,6 +523,7 @@ ul.menu li a {
 }
 
 .toggle__menu {
+  cursor: pointer;
   z-index: 12;
 }
 
@@ -522,8 +531,12 @@ ul.menu li a {
   z-index: 12;
 }
 
+.showCart {
+  display: block;
+}
+
 .cart__container {
-  display: none;
+  /* display: none; */
   position: absolute;
   top: 10%;
   left: 5%;
