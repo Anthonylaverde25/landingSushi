@@ -174,3 +174,125 @@
 .card-text {
   font-family: Poppins;
 }
+
+.number__diners {
+  cursor: pointer;
+}
+
+.numberOf__img img {
+  width: 30px;
+  height: 30px;
+}
+
+.number__diners p {
+  margin-bottom: unset;
+}
+
+.diners__container {
+  cursor: unset;
+}
+.items {
+  cursor: pointer;
+}
+.activeNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  color: var(--color-white);
+  font-weight: 800;
+  background-color: var(--color-button-background);
+  border-radius: 15px;
+}
+
+.activeValue {
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  color: var(--color-white);
+  font-weight: 800;
+  background-color: var(--color-button-background);
+  border-radius: 100%;
+}
+
+.number__diners p {
+  font-weight: 700;
+  font-family: Khula;
+  color: #fff;
+}
+
+.opacity {
+  opacity: 0;
+  cursor: unset;
+  transition: opacity 0.7s ease; /* Transición de 0.5 segundos con curva de velocidad 'ease' */
+}
+
+.btn__contact {
+  padding: 5px;
+  background: var(--color-button-background);
+  color: var(--color-white);
+  border-radius: 20px;
+  padding: 10px 20px;
+  transition: filter(0) 0.4s ease;
+}
+
+.btn__contact:disabled {
+  filter: blur(0.7px);
+  --color-button-background: rgba(219, 183, 52, 0.499);
+}
+
+.btn__contact:hover {
+  --color-button-background: rgba(
+    219,
+    183,
+    52,
+    0.499
+  ); /* Cambiar la variable CSS personalizada con rgba para hacer el color más opaco al pasar el mouse */
+  transition: background-color 0.3s; /* Transición suave para suavizar el cambio */
+}
+
+.submitForm {
+  margin-top: 30px;
+}
+
+.form-group {
+  position: relative;
+}
+.contact__input {
+  position: relative;
+}
+
+.contact__input {
+  .contact__input-error {
+    top: 15px;
+  }
+}
+
+.showError {
+  display: block;
+}
+.contact__input-error {
+  /*display: none;*/
+  position: absolute;
+  top: 25px;
+  width: 30px;
+  padding: 5px;
+}
+.contact__input-error img {
+  width: 20px;
+  height: 20px;
+}
+
+.message__error {
+  /* display: none; */
+  color: #fa0606fb;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.showForm {
+  display: block;
+}

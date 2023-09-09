@@ -241,6 +241,25 @@
   letter-spacing: 2px;
 }
 
+.diners__container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.numberOf__container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.diners {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
 .carousel__container {
   width: 90%;
   max-width: 1130px;
@@ -421,16 +440,16 @@
   font-size: 1rem;
   font-weight: 600;
 }
-
+/*
 .contact__input button {
   background: #ff8f1e;
   border-radius: 60px;
   font-family: Khula;
   color: #fff;
-}
+}*/
 
 .form__container {
-  display: none;
+  /*display: none;*/
 }
 
 footer {

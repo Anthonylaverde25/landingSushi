@@ -43,7 +43,7 @@
 
           <div class="nav__container-navigation">
             <ul class="navigation__items hidde">
-              <li class="items active">Home</li>
+              <li class="items activeNav">Home</li>
               <li class="items">About us</li>
               <li class="items">Popular</li>
               <li class="items">Recently</li>
@@ -70,49 +70,12 @@
           </div>
 
           <div class="cart__container-product">
-            <div class="cart__product">
-              <div class="cart__product-current">
-                <img
-                  class="product__image"
-                  src="image/image/SalmornCheese.png"
-                  alt=""
-                />
-                <h4 class="product__name">Roll Sushi</h4>
-                <img
-                  class="product__thras"
-                  src="image/iconos/trash-solid.svg"
-                  alt=""
-                />
-              </div>
-
-              <div class="cart__product-price">
-                <p>Roll Sushi 120$ x 2</p>
-              </div>
-            </div>
-
-            <div class="cart__product">
-              <div class="cart__product-current">
-                <img
-                  class="product__image"
-                  src="image/image/SalmornCheese.png"
-                  alt=""
-                />
-                <h4 class="product__name">Roll Sushi</h4>
-                <img
-                  class="product__thras"
-                  src="image/iconos/trash-solid.svg"
-                  alt=""
-                />
-              </div>
-
-              <div class="cart__product-price">
-                <p>Roll Sushi 120$ x 2</p>
-              </div>
-            </div>
+            <!--CONTENEDOR DE LAS CARD DEL CARRITO-->
           </div>
+          <!--
           <div class="total__price">
             <span>Total Price = $1200</span>
-          </div>
+          </div>-->
         </div>
         <div class="overlay hidde"></div>
 
@@ -176,8 +139,26 @@
             <span>The Best Food</span>
             <h2>Popular Dishes</h2>
           </div>
-
-          <div class="carousel__container">
+          <div class="diners__container">
+            <div class="numberOf__container buttonOrder">
+              <div class="numberOf__img">
+                <img
+                  class="numberOf__img-content"
+                  src="image/iconos/users-solid.svg"
+                  alt=""
+                />
+              </div>
+              <div class="number__diners">
+                <p class="number__diners-text">by number of diners</p>
+              </div>
+            </div>
+            <ul class="diners opacity">
+              <li class="number__diners activeValue" value="2">2</li>
+              <li class="number__diners" value="3">3</li>
+              <li class="number__diners" value="4">4</li>
+            </ul>
+          </div>
+          <div class="carousel__container" id="prueba">
             <div class="slider__card">
               <!--
               <div class="cardProduct">
@@ -249,22 +230,57 @@
                 Contact us for more information about our products and services
               </h2>
             </div>
+
             <div class="contact__input">
-              <input type="email" placeholder="your email" />
-              <button class="btn btn__contact">Show form</button>
+              <div class="contact__input-error hidde">
+                <img
+                  class="contact__input-error-contend"
+                  src="image/iconos/circle-exclamation-solid.svg"
+                  alt=""
+                />
+              </div>
+              <input
+                id="firstInputEmail"
+                type="email"
+                placeholder="your email"
+              />
+
+              <button class="btn__contact" disabled>Show form</button>
             </div>
-            <div class="form__container">
+            <span class="message__error hidde" id="errorFirstEmail">
+              campo no valido
+            </span>
+
+            <div class="form__container hidde">
               <form>
                 <div class="form-group">
+                  <div class="contact__input-error hidde">
+                    <img
+                      class="contact__input-error-contend"
+                      src="image/iconos/circle-exclamation-solid.svg"
+                      alt=""
+                    />
+                  </div>
                   <label for="exampleFormControlInput1">Email address</label>
                   <input
                     type="email"
-                    class="form-control"
-                    id="exampleFormControlInput1"
+                    class="form-control inputEmail"
+                    id="email"
                     placeholder="name@example.com"
                   />
+                  <span class="message__error hidde" id="errorEmail">
+                    campo no valido
+                  </span>
                 </div>
+
                 <div class="form-group">
+                  <div class="contact__input-error hidde">
+                    <img
+                      class="contact__input-error-contend"
+                      src="image/iconos/circle-exclamation-solid.svg"
+                      alt=""
+                    />
+                  </div>
                   <label for="name">Your Name</label>
                   <input
                     type="text"
@@ -272,17 +288,34 @@
                     id="name"
                     placeholder="User name"
                   />
+                  <span class="message__error hidde" id="errorName">
+                    campo no valido
+                  </span>
                 </div>
                 <div class="form-group">
+                  <div class="contact__input-error hidde">
+                    <img
+                      class="contact__input-error-contend"
+                      src="image/iconos/circle-exclamation-solid.svg"
+                      alt=""
+                    />
+                  </div>
                   <label for="exampleFormControlTextarea1"
                     >Example textarea</label
                   >
                   <textarea
                     class="form-control"
-                    id="exampleFormControlTextarea1"
+                    id="textArea"
                     rows="3"
                   ></textarea>
+                  <span class="message__error hidde" id="errorTextArea">
+                    campo no valido
+                  </span>
                 </div>
+
+                <button type="submit" class="btn btn-primary submitForm">
+                  Submit
+                </button>
               </form>
             </div>
           </div>
@@ -311,6 +344,6 @@
         </div>
       </footer>
     </div>
-    <script src="main.js"></script>
+    <script src="main.js" type="module"></script>
   </body>
 </html>

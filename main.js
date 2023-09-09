@@ -1,3 +1,6 @@
+import { validateForm } from "./validations.js";
+import { showForm } from "./validations.js";
+
 class app {
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////// SELECTORES PARA EL CAROUSEL
@@ -22,16 +25,51 @@ class app {
   //////////////////////////////////////////////////// SELECTORES PARA EL CAROUSEL
   containerSlider = document.querySelector(".slider__card");
 
+  ////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////// SELECIONAR EL TIPO
+  diners = document.querySelectorAll(".number__diners");
+  btnNumberOf = document.querySelector(".numberOf__container");
+
+  ////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////// SELECTORES PARA FORM
+  // showForm = document.querySelector(".btn__contact");
+  showForm = document.querySelector(".submitForm");
+  buttonShow = document.querySelector(".btn__contact");
+  inputForm = document.querySelector("#firstInputEmail");
+
   constructor() {
     this.setupCarousel();
     this.toggleMenu.addEventListener("click", this.toggle);
     this.buttonCart.addEventListener("click", this.cartToggle);
     this.renderCarousel(this.productStock);
+    this.getLocalStore();
+    this.diners.forEach((d) => {
+      d.addEventListener("click", (e) => {
+        let value = e.target.value;
+        this.filterDiners(value);
+      });
+    });
+    this.showNumberDiners(this.btnNumberOf);
+    this.handlerForm(this.showForm);
+    this.handlerShowForm(this.buttonShow, this.inputForm);
   }
 
   //////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////// PRODUCTOS PARA SER RENDERIZADOS EN LAS CARD DEL CARRUSEL
   selectedProducts = []; // ARREGLO PARA LOS PRODUCTOS SELECIONADOS
+
+  //////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////// GET LOCAL STORE
+
+  getLocalStore() {
+    const storeProducts = JSON.parse(localStorage.getItem("cartProducts"));
+    if (storeProducts && Array.isArray(storeProducts)) {
+      storeProducts.forEach((productObject) => {
+        this.selectedProducts.push(productObject);
+        this.renderCart(this.selectedProducts);
+      });
+    }
+  }
 
   productStock = [
     {
@@ -42,6 +80,7 @@ class app {
       image: "image/image/salmon-caviar.png",
       precio: 12.99,
       calorias: 150,
+      diners: 2,
       ingredientes: [
         "Salmón fresco",
         "Wasabi",
@@ -57,6 +96,8 @@ class app {
       image: "image/image/tuna-sushi.png",
       precio: 14.99,
       calorias: 120,
+      diners: 3,
+
       ingredientes: ["Atún rojo", "Arroz de sushi", "Wasabi", "Salsa de soja"],
     },
     {
@@ -68,6 +109,8 @@ class app {
 
       precio: 9.99,
       calorias: 100,
+      diners: 3,
+
       ingredientes: ["Aguacate", "Pepino", "Alga nori", "Arroz de sushi"],
     },
     {
@@ -78,6 +121,8 @@ class app {
       image: "image/image/sushi-roll-7558101-6169048.png",
       precio: 13.99,
       calorias: 180,
+      diners: 4,
+
       ingredientes: [
         "Langostino crujiente",
         "Aguacate",
@@ -93,6 +138,7 @@ class app {
       image: "image/image/SalmornCheese.png",
       precio: 15.99,
       calorias: 160,
+      diners: 2,
       ingredientes: ["Anguila glaseada", "Aguacate", "Pepino", "Alga nori"],
     },
   ];
@@ -118,6 +164,9 @@ class app {
             <h5 class="card__price">
               price = <span id="priceProduct">${product.precio}</span> $
             </h5>
+            <h4 class="card__diners>
+            <span class="numberDiners">${product.diners} Diners for dishes</span>
+            </h4>
             <a class="btn btn-primary" id="add">add to cart</a>
           </div>
         </div>
@@ -142,6 +191,7 @@ class app {
           <h4 class="product__name">${product.name}</h4>
           <img
             class="product__trash"
+            data-product-name="${product.name}"
             src="image/iconos/trash-solid.svg"
             alt=""
           />
@@ -221,6 +271,7 @@ class app {
         let card = button.closest(".card");
         let nameProduct = card.querySelector("#nameProduct").textContent;
         let imageProduct = card.querySelector("#imageProduct").src;
+        let dinersFor = card.querySelector(".numberDiners");
         let descriptionProduct = card.querySelector(
           "#descriptionProduct"
         ).textContent;
@@ -236,6 +287,7 @@ class app {
           name: nameProduct,
           image: imageProduct,
           description: descriptionProduct,
+          diners: dinersFor,
           price: priceProduct,
           quantity: quantity,
         };
@@ -254,6 +306,11 @@ class app {
           //console.log(this.selectedProducts);
           this.renderCart(this.selectedProducts);
         }
+
+        localStorage.setItem(
+          "cartProducts",
+          JSON.stringify(this.selectedProducts)
+        );
       });
     });
   }
@@ -262,12 +319,100 @@ class app {
   ////////////////////////////////////////////////////////// RENDER PARA EL CARRITO DE COMPRAS
   renderCart(products) {
     this.containerProducts.innerHTML = " ";
+
     products.forEach((product) => {
       const html = this.cartHTML(product);
       this.containerProducts.insertAdjacentHTML("beforeend", html);
     });
-    console.log(products);
+
+    let deleteProduct = document.querySelectorAll(".product__trash");
+    deleteProduct.forEach((product) => {
+      product.addEventListener("click", (e) => {
+        const currentProduct = product.dataset.productName;
+        this.deleteProduct(currentProduct);
+        //console.log(currentProduct);
+      });
+    });
+
+    const totalPrice = products.reduce((accumulator, product) => {
+      return accumulator + product.price * product.quantity;
+    }, 0);
+
+    const totalPriceHTML = `
+    <div class="total__price">
+    <span>Total Price = $ ${totalPrice}</span>
+    </div>
+    `;
+
+    const totalPriceInsert = this.containerCart.querySelector(".total__price");
+    if (totalPriceInsert) {
+      totalPriceInsert.remove();
+    }
+
+    if (totalPrice > 0) {
+      this.containerCart.insertAdjacentHTML("beforeend", totalPriceHTML);
+    }
   }
+
+  ////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////// ELIMINAR PRODUCTOS DEL CARRITO
+
+  deleteProduct(product) {
+    const findProductIndex = this.selectedProducts.findIndex(
+      (productSelected) => productSelected.name === product
+    );
+
+    if (findProductIndex !== -1) {
+      let spliceIndex = this.selectedProducts.splice(findProductIndex, 1);
+      this.renderCart(this.selectedProducts);
+      localStorage.setItem(
+        "cartProducts",
+        JSON.stringify(this.selectedProducts)
+      );
+    } else {
+      console.log("producto no encontrado");
+    }
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////// SELECCIONAR POR NUMERO DE COMENZALES [2,3,4]
+
+  filterDiners(number = null) {
+    let matchingProducts = this.productStock.filter(
+      (product) => product.diners === number
+    );
+
+    let nonMatchingProducts = this.productStock.filter(
+      (product) => product.diners !== number
+    );
+
+    let filterProducts = matchingProducts.concat(nonMatchingProducts);
+
+    this.renderCarousel(filterProducts);
+  }
+
+  showNumberDiners = (btn) => {
+    const numberDiners = document.querySelector(".diners");
+    btn.addEventListener("click", (e) => {
+      numberDiners.classList.toggle("opacity");
+    });
+  };
+
+  ////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////// FORMULARIO DE VALIDACION
+
+  handlerShowForm = (button, input) => {
+    input.addEventListener("input", (e) => {
+      showForm(button);
+    });
+  };
+
+  handlerForm = (show) => {
+    show.addEventListener("click", (e) => {
+      e.preventDefault();
+      validateForm();
+    });
+  };
 }
 
 const newApp = new app();
