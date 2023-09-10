@@ -18,12 +18,12 @@
 
 .cart {
   cursor: pointer;
-  width: 35px;
+  width: 30px;
   size: 40px;
 }
 
 .toggle__menu-img {
-  width: 40px;
+  width: 30px;
   size: 40px;
 }
 
@@ -88,7 +88,6 @@
 }
 
 .cart__container-product {
-  border: 1px solid;
   padding: 5px;
 }
 
@@ -97,27 +96,25 @@
   align-items: center;
   flex-direction: column;
   padding: 10px;
-  background: #ff8f1e;
 }
 
 .cart__product-current {
   display: flex;
   align-items: center;
+  gap: 10px;
   justify-content: space-around;
-  padding: 1rem;
+  padding: 1.5rem;
   width: 95%;
-
-  border: 1px solid;
 }
 
 .cart__product-current img {
-  width: 30px;
+  width: 20px;
   height: 63px;
 }
 
 .cart__product-current .product__image {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 45px;
 }
 
 .cart__product-price {
@@ -138,6 +135,10 @@
   border: 1px solid;
 }
 
+.product__name {
+  text-align: center;
+}
+
 .total__price {
   text-align: center;
   letter-spacing: 1.5px;
@@ -149,11 +150,11 @@
   justify-content: flex-end;
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid;
 }
 
 .closetCart img {
   width: 25px;
+  cursor: pointer;
 }
 
 .card-body .card__price {
@@ -204,6 +205,7 @@
   color: var(--color-white);
   font-weight: 800;
   background-color: var(--color-button-background);
+  transition: background-color 0.8s ease;
   border-radius: 15px;
 }
 
@@ -214,6 +216,7 @@
   color: var(--color-white);
   font-weight: 800;
   background-color: var(--color-button-background);
+  transition: background-color 0.8s ease;
   border-radius: 100%;
 }
 
@@ -295,4 +298,17 @@
 
 .showForm {
   display: block;
+}
+
+.loadImage {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.itemsNav {
+  cursor: pointer;
 }

@@ -1,5 +1,7 @@
 import { validateForm } from "./validations.js";
 import { showForm } from "./validations.js";
+import { imageObserver } from "./loadImage.js";
+import { navigationsSections } from "./navigationSections.js";
 
 class app {
   ////////////////////////////////////////////////////////////////////////////////
@@ -32,12 +34,20 @@ class app {
 
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////// SELECTORES PARA FORM
-  // showForm = document.querySelector(".btn__contact");
   showForm = document.querySelector(".submitForm");
   buttonShow = document.querySelector(".btn__contact");
   inputForm = document.querySelector("#firstInputEmail");
 
+  //////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////// SELECTORES PARA EL NAV
+  navigationsItems = document.querySelectorAll(".items");
+  filterValue = document.querySelectorAll(".number__dinersItem");
+
+  //////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////// SELECTORES PARA NAVEGAR POR LAS SECTIONS
+
   constructor() {
+    imageObserver();
     this.setupCarousel();
     this.toggleMenu.addEventListener("click", this.toggle);
     this.buttonCart.addEventListener("click", this.cartToggle);
@@ -52,11 +62,38 @@ class app {
     this.showNumberDiners(this.btnNumberOf);
     this.handlerForm(this.showForm);
     this.handlerShowForm(this.buttonShow, this.inputForm);
+    this.nav(this.navigationsItems, this.filterValue);
+    navigationsSections();
   }
 
   //////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////// PRODUCTOS PARA SER RENDERIZADOS EN LAS CARD DEL CARRUSEL
   selectedProducts = []; // ARREGLO PARA LOS PRODUCTOS SELECIONADOS
+
+  //////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////// NAV
+
+  nav = (items, values) => {
+    values.forEach((value) => {
+      value.addEventListener("mouseenter", (e) => {
+        values.forEach((value) => {
+          value.classList.remove("activeValue");
+        });
+
+        value.classList.add("activeValue");
+      });
+    });
+
+    items.forEach((item) => {
+      item.addEventListener("mouseenter", (e) => {
+        items.forEach((item) => {
+          item.classList.remove("activeNav");
+        });
+
+        item.classList.add("activeNav");
+      });
+    });
+  };
 
   //////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////// GET LOCAL STORE
@@ -184,13 +221,13 @@ class app {
       <div class="cart__product">
         <div class="cart__product-current">
           <img
-            class="product__image"
+            class="product__image "
             src="${product.image}"
             alt=""
           />
           <h4 class="product__name">${product.name}</h4>
           <img
-            class="product__trash"
+            class="product__trash "
             data-product-name="${product.name}"
             src="image/iconos/trash-solid.svg"
             alt=""

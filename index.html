@@ -19,46 +19,51 @@
   <body>
     <div class="container__2">
       <header class="header">
-        <nav class="nav__container nav_grid">
-          <div class="nav__container-logoAndtoggle">
-            <div class="toggle__menu">
-              <img
-                class="toggle__menu-img"
-                src="image/iconos/icons8-menú-48.png"
-                alt=""
-              />
-            </div>
-            <div class="logo__container">
-              <img
-                class="logo__image"
-                src="image/iconos/icons8-sushi-48.png"
-                alt=""
-              />
+        <div class="navFixed">
+          <nav class="nav__container nav_grid">
+            <div class="nav__container-logoAndtoggle">
+              <div class="toggle__menu">
+                <img
+                  class="toggle__menu-img"
+                  src="image/iconos/icons8-menú-48.png"
+                  alt=""
+                />
+              </div>
+              <div class="logo__container">
+                <img
+                  class="logo__image"
+                  src="image/iconos/icons8-sushi-48.png"
+                  alt=""
+                />
 
-              <div class="logo__leter">
-                <p>Sushi</p>
+                <div class="logo__leter">
+                  <p>Sushi</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="nav__container-navigation">
-            <ul class="navigation__items hidde">
-              <li class="items activeNav">Home</li>
-              <li class="items">About us</li>
-              <li class="items">Popular</li>
-              <li class="items">Recently</li>
-            </ul>
+            <div class="nav__container-navigation">
+              <ul class="navigation__items hidde">
+                <li class="items activeNav itemsNav" data-target="hero">
+                  Home
+                </li>
+                <li class="items itemsNav" data-target="about">About us</li>
+                <li class="items itemsNav" data-target="dishes">Dishes</li>
+                <li class="items itemsNav" data-target="recently">Recently</li>
+                <li class="items itemsNav" data-target="contact">Contact</li>
+              </ul>
 
-            <div class="nav__container-loginAndCart">
-              <span class="login">Login</span>
-              <img
-                class="cart"
-                src="image/iconos/cart-arrow-down-solid.svg"
-                alt=""
-              />
+              <div class="nav__container-loginAndCart">
+                <span class="login">Login</span>
+                <img
+                  class="cart"
+                  src="image/iconos/cart-arrow-down-solid.svg"
+                  alt=""
+                />
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
 
         <div class="cart__container hidde">
           <div class="closetCart">
@@ -79,7 +84,7 @@
         </div>
         <div class="overlay hidde"></div>
 
-        <section class="hero">
+        <section id="hero" class="hero">
           <div class="hero__container-grid">
             <div class="hero">
               <div class="hero__title">
@@ -98,7 +103,10 @@
               </div>
 
               <div class="hero__button">
-                <button class="button buttonOrder">
+                <button
+                  class="button buttonOrder itemsNav"
+                  data-target="dishes"
+                >
                   Order Now
                   <img src="image/iconos/arrow-right-solid.svg" alt="" />
                 </button>
@@ -106,19 +114,23 @@
             </div>
 
             <div class="hero__img">
-              <img src="image/image/preview.png" alt="" />
+              <img
+                class="loadImage"
+                data-src="image/image/preview.png"
+                alt=""
+              />
             </div>
           </div>
         </section>
       </header>
 
       <main class="main">
-        <section class="aboutUs">
+        <section id="about" class="aboutUs">
           <div class="aboutUs__description left">
             <span>About us</span>
             <div class="aboutUs__title">
               <h2>We Provide <span>Healthy</span> Food</h2>
-              <img src="image/image/nigiri.png" alt="" />
+              <img class="" src="image/image/nigiri.png" alt="" />
             </div>
             <div class="aboutUs__paragraph">
               <p class="paragraph">
@@ -130,11 +142,11 @@
           </div>
 
           <div class="aboutUs__img rigth">
-            <img src="image/image/3895631.png" alt="" />
+            <img class="loadImage" data-src="image/image/3895631.png" alt="" />
           </div>
         </section>
 
-        <section class="dishes">
+        <section id="dishes" class="dishes">
           <div class="dishes__title">
             <span>The Best Food</span>
             <h2>Popular Dishes</h2>
@@ -153,9 +165,14 @@
               </div>
             </div>
             <ul class="diners opacity">
-              <li class="number__diners activeValue" value="2">2</li>
-              <li class="number__diners" value="3">3</li>
-              <li class="number__diners" value="4">4</li>
+              <li
+                class="number__diners number__dinersItem activeValue"
+                value="2"
+              >
+                2
+              </li>
+              <li class="number__diners number__dinersItem" value="3">3</li>
+              <li class="number__diners number__dinersItem" value="4">4</li>
             </ul>
           </div>
           <div class="carousel__container" id="prueba">
@@ -195,7 +212,7 @@
           </div>
         </section>
 
-        <section class="recently">
+        <section id="recently" class="recently">
           <div class="recently__title-container">
             <small class="recently__smallTitle">
               <span>Recently Added</span>
@@ -211,18 +228,22 @@
               </div>
             </div>
             <div class="recently__button btn">
-              <button class="button buttonOrder">
+              <button class="button buttonOrder itemsNav" data-target="dishes">
                 Order Now
-                <img src="image/iconos/arrow-right-solid.svg" alt="" />
+                <img class="" src="image/iconos/arrow-right-solid.svg" alt="" />
               </button>
             </div>
           </div>
-          <div class="recently__img">
-            <img src="image/image/SalmornCheese.png" alt="" />
+          <div class="recently__img" data-target="dishes">
+            <img
+              class="loadImage"
+              data-src="image/image/SalmornCheese.png"
+              alt=""
+            />
           </div>
         </section>
 
-        <section class="contact">
+        <section id="contact" class="contact">
           <div class="contact__container">
             <div class="contact__title">
               <span>From us, to you</span>
@@ -234,7 +255,7 @@
             <div class="contact__input">
               <div class="contact__input-error hidde">
                 <img
-                  class="contact__input-error-contend"
+                  class="contact__input-error-contend loadImage"
                   src="image/iconos/circle-exclamation-solid.svg"
                   alt=""
                 />
@@ -256,7 +277,7 @@
                 <div class="form-group">
                   <div class="contact__input-error hidde">
                     <img
-                      class="contact__input-error-contend"
+                      class="contact__input-error-contend loadImage"
                       src="image/iconos/circle-exclamation-solid.svg"
                       alt=""
                     />
@@ -276,7 +297,7 @@
                 <div class="form-group">
                   <div class="contact__input-error hidde">
                     <img
-                      class="contact__input-error-contend"
+                      class="contact__input-error-contend loadImage"
                       src="image/iconos/circle-exclamation-solid.svg"
                       alt=""
                     />
@@ -295,7 +316,7 @@
                 <div class="form-group">
                   <div class="contact__input-error hidde">
                     <img
-                      class="contact__input-error-contend"
+                      class="contact__input-error-contend loadImage"
                       src="image/iconos/circle-exclamation-solid.svg"
                       alt=""
                     />
@@ -323,22 +344,27 @@
       </main>
       <footer>
         <ul class="menu">
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Acerca de</a></li>
-          <li><a href="#">Servicios</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a class="itemsNav" data-target="hero">Home</a></li>
+          <li><a class="itemsNav" data-target="about">About us</a></li>
+          <li><a class="itemsNav" data-target="dishes">Dishes</a></li>
         </ul>
         <div class="contactMe__container">
           <h4>Contact with me</h4>
           <ul class="contactMe">
             <li>
-              <a href="#"><img src="image/iconos/github.svg" alt="" /></a>
+              <a href="#"
+                ><img class="" src="image/iconos/github.svg" alt=""
+              /></a>
             </li>
             <li>
-              <a href="#"><img src="image/iconos/linkedin.svg" alt="" /></a>
+              <a href="#"
+                ><img class="" src="image/iconos/linkedin.svg" alt=""
+              /></a>
             </li>
             <li>
-              <a href="#"><img src="image/iconos/x-twitter.svg" alt="" /></a>
+              <a href="#"
+                ><img class="" src="image/iconos/x-twitter.svg" alt=""
+              /></a>
             </li>
           </ul>
         </div>

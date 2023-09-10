@@ -9,6 +9,10 @@
     height: 100vh;
   }
 
+  .nav__container {
+    background-color: var(--bs-body-bg);
+  }
+
   .navigation__items {
     position: unset;
     display: flex;
@@ -365,6 +369,13 @@
     align-items: center;
     padding: 1rem;
     width: 50%;
+  }
+
+  .navFixed {
+    position: fixed;
+    top: 0;
+    width: 95%;
+    z-index: 1000;
   }
 }
 
