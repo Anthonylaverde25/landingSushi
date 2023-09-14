@@ -273,6 +273,7 @@
   width: 90%;
   max-width: 1130px;
   min-width: 315px;
+  width: auto;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -297,6 +298,7 @@
 
 .cardProduct .card {
   width: 100%;
+
   /*max-width: 400px;*/
 }
 
@@ -313,10 +315,11 @@
 }
 
 .point {
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: #2a252151;
+  cursor: pointer;
 }
 
 /* RECIENTE */
@@ -566,7 +569,7 @@ ul.menu li a {
 .cart__container {
   /* display: none; */
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 5%;
   min-width: 90%;
   width: auto;

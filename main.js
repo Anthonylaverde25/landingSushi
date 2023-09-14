@@ -64,6 +64,8 @@ class app {
     this.handlerShowForm(this.buttonShow, this.inputForm);
     this.nav(this.navigationsItems, this.filterValue);
     navigationsSections();
+    //this.updateCarousel();
+    //window.addEventListener("resize", this.updatePoint);
   }
 
   //////////////////////////////////////////////////////////////////////////////////////
@@ -246,18 +248,58 @@ class app {
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////// FUNCIONAMIENTO DE CARRUSEL
-  setupCarousel() {
-    this.points.forEach((p, i) => {
-      p.addEventListener("click", (e) => {
-        let position = i;
-        let operation = position * -20;
 
-        this.sliderCard.style.transform = `translateX(${operation}%)`;
-        this.points.forEach((p) => {
-          p.classList.remove("active");
+  setupCarousel() {
+    const containerCarousel = document.querySelector(".carousel__container");
+    const pointContainer = document.querySelector(".points"); // Contenedor estático
+    const sliderCard = document.querySelector(".slider__card");
+
+    const updateCarousel = () => {
+      const screenWidth = window.innerWidth;
+      let numPoints = 5;
+
+      if (screenWidth >= 768) {
+        numPoints = 4;
+      }
+
+      if (screenWidth >= 1122) {
+        numPoints = 3;
+      }
+
+      // Lógica para actualizar los puntos aquí (similar a tu función updatePoints)
+      pointContainer.innerHTML = ""; // Borra los puntos existentes
+
+      for (let i = 0; i < numPoints; i++) {
+        const li = document.createElement("li");
+        li.className = "point";
+
+        if (i === 0) {
+          li.classList.add("active");
+        }
+
+        pointContainer.appendChild(li);
+      }
+    };
+
+    // Agrega un listener para el evento resize
+    updateCarousel();
+    window.addEventListener("resize", updateCarousel);
+
+    pointContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("point")) {
+        const points = Array.from(pointContainer.querySelectorAll(".point"));
+        const i = points.indexOf(e.target);
+        let position = i * -20;
+        sliderCard.style.transform = `translateX(${position}%)`;
+
+        // Elimina la clase "active" de todos los puntos
+        points.forEach((point) => {
+          point.classList.remove("active");
         });
-        p.classList.add("active");
-      });
+
+        // Establece la clase "active" en el punto clicado
+        e.target.classList.add("active");
+      }
     });
   }
 
