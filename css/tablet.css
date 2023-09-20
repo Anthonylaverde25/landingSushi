@@ -107,4 +107,8 @@
     min-width: 50%;
     width: auto;
   }
+
+  .model__navSide {
+    display: none;
+  }
 }

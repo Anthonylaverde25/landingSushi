@@ -460,9 +460,10 @@
   color: #fff;
 }*/
 
+/*
 .form__container {
-  /*display: none;*/
-}
+  display: block;
+}*/
 
 footer {
   padding: 1.5rem;
@@ -573,11 +574,19 @@ ul.menu li a {
   left: 5%;
   min-width: 90%;
   width: auto;
+  width: 90%;
   height: auto;
   min-height: 300px;
   border-radius: 30px;
-  background-color: #f8f5f5;
+  color: #fff;
   box-shadow: 1.5px 1.5px 1.5px rgba(0, 0, 0, 0.304);
-  border: 0.5px white;
   z-index: 10;
+  background-color: #ff8f1e;
+}
+
+.model__navSide {
+  display: none;
+}
+
+@media (min-width: 1122px) {
 }

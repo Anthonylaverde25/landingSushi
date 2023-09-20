@@ -2,6 +2,7 @@ import { validateForm } from "./validations.js";
 import { showForm } from "./validations.js";
 import { imageObserver } from "./loadImage.js";
 import { navigationsSections } from "./navigationSections.js";
+import { navSide } from "./navSide.js";
 
 class app {
   ////////////////////////////////////////////////////////////////////////////////
@@ -20,6 +21,7 @@ class app {
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////// SELECTORES PARA EL CARRITO DE COMPRAS
   buttonCart = document.querySelector(".cart");
+  closeCart = document.querySelector(".closetCart");
   containerCart = document.querySelector(".cart__container");
   containerProducts = document.querySelector(".cart__container-product");
 
@@ -63,7 +65,11 @@ class app {
     this.handlerForm(this.showForm);
     this.handlerShowForm(this.buttonShow, this.inputForm);
     this.nav(this.navigationsItems, this.filterValue);
+    navSide();
     navigationsSections();
+    this.close();
+    //modalNavSide();
+
     //this.updateCarousel();
     //window.addEventListener("resize", this.updatePoint);
   }
@@ -331,6 +337,33 @@ class app {
   cartToggle = () => {
     this.containerCart.classList.toggle("hidde");
     this.containerCart.classList.toggle("showCart");
+  };
+
+  close = () => {
+    this.overlay.addEventListener("click", (e) => {
+      if (this.isCloset) {
+        this.srcMenu.src = "image/iconos/icons8-x-48.png"; // Cambiar a la imagen de cierre
+        this.overlay.classList.toggle("hidde");
+        this.overlay.classList.toggle("show");
+        this.navMobile.classList.toggle("hidde");
+        this.navMobile.classList.toggle("show");
+
+        this.isCloset = false;
+      } else {
+        this.srcMenu.src = "image/iconos/icons8-menú-48.png"; // Cambiar a la imagen de hamburguesa
+        this.overlay.classList.toggle("hidde");
+        this.overlay.classList.toggle("show");
+        this.navMobile.classList.toggle("hidde");
+        this.navMobile.classList.toggle("show");
+
+        this.isCloset = true;
+      }
+    });
+
+    this.closeCart.addEventListener("click", (e) => {
+      this.containerCart.classList.toggle("hidde");
+      this.containerCart.classList.toggle("showCart");
+    });
   };
 
   ////////////////////////////////////////////////////////////////////////////////

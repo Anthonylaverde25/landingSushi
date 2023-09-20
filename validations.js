@@ -102,6 +102,28 @@ export function validateForm() {
   validateFields(email, "email", spanErrorEmail);
   validateFields(user, "name", spanErrorName);
   validateFields(textArea, "textArea", spanErrorText);
+
+  if (validationMessage.length === 0) {
+    const conteinerExit = document.querySelector(".exito");
+    const containerForm = document.querySelector(".form__container");
+    conteinerExit.classList.add("show_exito");
+    firstEmail.value = "";
+    email.value = "";
+    user.value = "";
+    textArea.value = "";
+
+    setTimeout(() => {
+      conteinerExit.classList.remove("show_exito");
+      containerForm.classList.remove("showForm");
+      location.href = "http://127.0.0.1:5500/index.html";
+      location.reload();
+    }, 1000);
+  } else {
+    console.log("Hubo errores en la validación.");
+    // Aquí puedes hacer algo para manejar los errores, como mostrarlos al usuario.
+    // También puedes detener el envío del formulario si lo estás validando antes de enviarlo.
+  }
+
   console.log(validationMessage);
 }
 
@@ -139,3 +161,4 @@ const isValidTextArea = (text) => {
   }
   return textMss;
 };
+//console.log(arrayError);

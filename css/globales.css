@@ -124,15 +124,13 @@
   font-family: Poppins;
   gap: 1rem;
   width: 95%;
-
-  border: 1px solid;
 }
 
 .cart__product-price p {
   font-family: Poppins;
   font-weight: bold;
   padding: 0.5rem;
-  border: 1px solid;
+  text-transform: uppercase;
 }
 
 .product__name {
@@ -142,7 +140,7 @@
 .total__price {
   text-align: center;
   letter-spacing: 1.5px;
-  border: 1px solid;
+  text-transform: uppercase;
 }
 
 .closetCart {
@@ -231,7 +229,7 @@
   cursor: unset;
   transition: opacity 0.7s ease; /* Transición de 0.5 segundos con curva de velocidad 'ease' */
 }
-
+/*
 .btn__contact {
   padding: 5px;
   background: var(--color-button-background);
@@ -239,22 +237,7 @@
   border-radius: 20px;
   padding: 10px 20px;
   transition: filter(0) 0.4s ease;
-}
-
-.btn__contact:disabled {
-  filter: blur(0.7px);
-  --color-button-background: rgba(219, 183, 52, 0.499);
-}
-
-.btn__contact:hover {
-  --color-button-background: rgba(
-    219,
-    183,
-    52,
-    0.499
-  ); /* Cambiar la variable CSS personalizada con rgba para hacer el color más opaco al pasar el mouse */
-  transition: background-color 0.3s; /* Transición suave para suavizar el cambio */
-}
+}*/
 
 .submitForm {
   margin-top: 30px;
@@ -311,4 +294,57 @@
 
 .itemsNav {
   cursor: pointer;
+}
+
+.show_exito {
+  display: block;
+}
+.exito {
+}
+
+.btn__contact {
+  padding: 5px;
+  background: var(--color-button-background);
+  color: var(--color-white);
+  border-radius: 20px;
+  transition: filter(0) 0.4s ease;
+}
+
+.btn__contact:disabled {
+  filter: blur(0.7px);
+  --color-button-background: rgba(219, 183, 52, 0.499);
+}
+
+.btn__contact:hover {
+  --color-button-background: rgba(
+    219,
+    183,
+    52,
+    0.499
+  ); /* Cambiar la variable CSS personalizada con rgba para hacer el color más opaco al pasar el mouse */
+  transition: background-color 0.3s; /* Transición suave para suavizar el cambio */
+}
+@media (min-width: 1122px) {
+  .navFixed {
+    position: unset;
+  }
+
+  .btn__contact {
+    padding: 5px;
+    background: var(--color-button-background);
+    color: var(--color-white);
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: filter(0) 0.4s ease;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1120px) {
+  .btn__contact {
+    padding: 5px;
+    background: var(--color-button-background);
+    color: var(--color-white);
+    border-radius: 20px;
+    transition: filter(0) 0.4s ease;
+  }
 }
