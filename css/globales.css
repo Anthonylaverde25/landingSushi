@@ -348,3 +348,10 @@
     transition: filter(0) 0.4s ease;
   }
 }
+
+.cart__actions {
+  margin-top: 1rem;
+  .button {
+    width: 100%;
+  }
+}

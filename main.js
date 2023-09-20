@@ -453,6 +453,10 @@ class app {
     const totalPriceHTML = `
     <div class="total__price">
     <span>Total Price = $ ${totalPrice}</span>
+    <div class = "cart__actions">
+    <button id="buy" type="button" class="btn btn-primary btn-lg">Buy</button></button>
+    <button id="empty" type="button" class="btn btn-secondary btn-lg">Empty Cart</button>
+    </div>
     </div>
     `;
 
@@ -464,6 +468,23 @@ class app {
     if (totalPrice > 0) {
       this.containerCart.insertAdjacentHTML("beforeend", totalPriceHTML);
     }
+
+    const buy = document.querySelector("#buy");
+    const empty = document.querySelector("#empty");
+
+    buy.addEventListener("click", (e) => {
+      console.log("buy");
+    });
+
+    empty.addEventListener("click", function (e) {
+      console.log("sssss");
+      let contentStore = localStorage.getItem("cartProducts");
+      //newApp.renderCart([]);
+      if (contentStore) {
+        const empty = localStorage.removeItem("cartProducts");
+        newApp.renderCart([]);
+      }
+    });
   }
 
   ////////////////////////////////////////////////////////////////////////////////
