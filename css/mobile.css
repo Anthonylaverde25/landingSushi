@@ -74,8 +74,7 @@
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
-.hero {
-}
+
 .hero__img {
   height: 200px;
 }
@@ -150,18 +149,6 @@
 
 /* MAIN */
 
-.main {
-  /*
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;*/
-}
-
-.aboutUs {
-}
-
 .aboutUs__description {
   display: flex;
   flex-direction: column;
@@ -199,9 +186,6 @@
 .aboutUs__paragraph {
   width: 80%;
   margin: 10px auto;
-}
-
-.aboutUs__paragraph .paragraph {
 }
 
 .aboutUs__img {
@@ -296,10 +280,12 @@
   padding: 5px;
 }
 
+.cart__product-price p {
+  font-size: 0.7rem;
+}
+
 .cardProduct .card {
   width: 100%;
-
-  /*max-width: 400px;*/
 }
 
 .cursor__carousel {
@@ -376,9 +362,6 @@
     rgba(211, 211, 211, 0.161) 50% / cover no-repeat;
 }
 
-.recently__button {
-}
-
 .recently__button img {
   width: 20px;
 }
@@ -452,18 +435,6 @@
   font-size: 1rem;
   font-weight: 600;
 }
-/*
-.contact__input button {
-  background: #ff8f1e;
-  border-radius: 60px;
-  font-family: Khula;
-  color: #fff;
-}*/
-
-/*
-.form__container {
-  display: block;
-}*/
 
 footer {
   padding: 1.5rem;
@@ -529,7 +500,6 @@ ul.menu li a {
   display: none;
 }
 .overlay {
-  /* display: flex;*/
   position: fixed;
   top: 0;
   left: 0;
@@ -544,7 +514,6 @@ ul.menu li a {
   position: fixed;
   left: 0;
   top: 0%;
-  /* display: flex;*/
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -568,7 +537,6 @@ ul.menu li a {
 }
 
 .cart__container {
-  /* display: none; */
   position: absolute;
   top: 20%;
   left: 5%;
@@ -581,7 +549,7 @@ ul.menu li a {
   color: #fff;
   box-shadow: 1.5px 1.5px 1.5px rgba(0, 0, 0, 0.304);
   z-index: 10;
-  background-color: #ff8f1e;
+  background-color: #f7b776;
 }
 
 .model__navSide {

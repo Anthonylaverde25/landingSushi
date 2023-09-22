@@ -68,10 +68,6 @@ class app {
     navSide();
     navigationsSections();
     this.close();
-    //modalNavSide();
-
-    //this.updateCarousel();
-    //window.addEventListener("resize", this.updatePoint);
   }
 
   //////////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +233,7 @@ class app {
           <img
             class="product__trash "
             data-product-name="${product.name}"
-            src="image/iconos/trash-solid.svg"
+            src="image/iconos/trash.svg"
             alt=""
           />
         </div>
@@ -477,13 +473,9 @@ class app {
     });
 
     empty.addEventListener("click", function (e) {
-      console.log("sssss");
-      let contentStore = localStorage.getItem("cartProducts");
-      //newApp.renderCart([]);
-      if (contentStore) {
-        const empty = localStorage.removeItem("cartProducts");
-        newApp.renderCart([]);
-      }
+      localStorage.removeItem("cartProducts"); // Elimina los productos del localStorage
+      newApp.selectedProducts = []; // Limpia los productos en la variable
+      newApp.renderCart([]); // Renderiza el carrito vacío
     });
   }
 

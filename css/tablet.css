@@ -1,8 +1,3 @@
-/*@media (min-width: 768px) and (max-width: 1024px) {
-  .container__2 {
-    width: 95%;
-  }
-}*/
 @media (min-width: 768px) and (max-width: 1120px) {
   .container__2 {
     width: 95%;
@@ -16,9 +11,6 @@
   .smallTitle {
     font-size: 2.5em;
     letter-spacing: 2px;
-  }
-
-  .hero__paragraph {
   }
 
   .paragraph {

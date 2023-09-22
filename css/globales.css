@@ -32,9 +32,6 @@
   height: 20px;
 }
 
-.hero__button {
-}
-
 .button {
   display: flex;
   align-items: center;
@@ -52,13 +49,8 @@
 }
 
 .buttonOrder:hover {
-  --color-button-background: rgba(
-    219,
-    183,
-    52,
-    0.499
-  ); /* Cambiar la variable CSS personalizada con rgba para hacer el color más opaco al pasar el mouse */
-  transition: background-color 0.3s; /* Transición suave para suavizar el cambio */
+  --color-button-background: rgba(219, 183, 52, 0.499);
+  transition: background-color 0.3s;
 }
 
 .smallTitle img {
@@ -95,7 +87,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
+  padding: 0.6rem;
+  border: 1px solid beige;
 }
 
 .cart__product-current {
@@ -103,18 +96,18 @@
   align-items: center;
   gap: 10px;
   justify-content: space-around;
-  padding: 1.5rem;
-  width: 95%;
+  width: 100%;
+  border: 1px solid;
 }
 
 .cart__product-current img {
-  width: 20px;
-  height: 63px;
+  width: 40px;
+  height: 40px;
 }
 
 .cart__product-current .product__image {
-  width: 50px;
-  height: 45px;
+  width: 60px;
+  height: 60px;
 }
 
 .cart__product-price {
@@ -135,12 +128,15 @@
 
 .product__name {
   text-align: center;
+  font-size: 1rem;
+  padding: 1rem;
 }
 
 .total__price {
   text-align: center;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  font-weight: 700;
 }
 
 .closetCart {
@@ -161,9 +157,6 @@
   padding: 10px;
   color: #fff;
   font-family: Poppins;
-}
-
-.card__price .price {
 }
 
 .card-title {
@@ -227,17 +220,8 @@
 .opacity {
   opacity: 0;
   cursor: unset;
-  transition: opacity 0.7s ease; /* Transición de 0.5 segundos con curva de velocidad 'ease' */
+  transition: opacity 0.7s ease;
 }
-/*
-.btn__contact {
-  padding: 5px;
-  background: var(--color-button-background);
-  color: var(--color-white);
-  border-radius: 20px;
-  padding: 10px 20px;
-  transition: filter(0) 0.4s ease;
-}*/
 
 .submitForm {
   margin-top: 30px;
@@ -299,8 +283,6 @@
 .show_exito {
   display: block;
 }
-.exito {
-}
 
 .btn__contact {
   padding: 5px;
@@ -316,13 +298,8 @@
 }
 
 .btn__contact:hover {
-  --color-button-background: rgba(
-    219,
-    183,
-    52,
-    0.499
-  ); /* Cambiar la variable CSS personalizada con rgba para hacer el color más opaco al pasar el mouse */
-  transition: background-color 0.3s; /* Transición suave para suavizar el cambio */
+  --color-button-background: rgba(219, 183, 52, 0.499);
+  transition: background-color 0.3s;
 }
 @media (min-width: 1122px) {
   .navFixed {
@@ -354,4 +331,8 @@
   .button {
     width: 100%;
   }
+}
+.card {
+  --bs-card-border-width: 0; /* Establece el ancho del borde a 0 para eliminarlo */
+  --bs-card-border-color: transparent; /* Establece el color del borde a transparente para ocultarlo */
 }

@@ -120,8 +120,7 @@ export function validateForm() {
     }, 1000);
   } else {
     console.log("Hubo errores en la validación.");
-    // Aquí puedes hacer algo para manejar los errores, como mostrarlos al usuario.
-    // También puedes detener el envío del formulario si lo estás validando antes de enviarlo.
+    // Aquí puedo hacer algo para manejar los errores, como mostrarlos al usuario.
   }
 
   console.log(validationMessage);
@@ -161,4 +160,3 @@ const isValidTextArea = (text) => {
   }
   return textMss;
 };
-//console.log(arrayError);
