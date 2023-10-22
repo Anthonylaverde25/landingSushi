@@ -1,8 +1,8 @@
-import { validateForm } from "./validations.js";
-import { showForm } from "./validations.js";
+//import { validateForm } from "./validations.js";
+import { validationForm } from "./validations.js";
 import { imageObserver } from "./loadImage.js";
 import { navigationsSections } from "./navigationSections.js";
-import { navSide } from "./navSide.js";
+//import { navSide } from "./navSide.js";
 
 class app {
   ////////////////////////////////////////////////////////////////////////////////
@@ -36,9 +36,9 @@ class app {
 
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////// SELECTORES PARA FORM
-  showForm = document.querySelector(".submitForm");
-  buttonShow = document.querySelector(".btn__contact");
-  inputForm = document.querySelector("#firstInputEmail");
+  //showForm = document.querySelector(".submitForm");
+  //buttonShow = document.querySelector(".btn__contact");
+  //inputForm = document.querySelector("#firstInputEmail");
 
   //////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////// SELECTORES PARA EL NAV
@@ -62,17 +62,50 @@ class app {
       });
     });
     this.showNumberDiners(this.btnNumberOf);
-    this.handlerForm(this.showForm);
-    this.handlerShowForm(this.buttonShow, this.inputForm);
+    //this.handlerForm(this.showForm);
+    //this.handlerShowForm(this.buttonShow, this.inputForm);
     this.nav(this.navigationsItems, this.filterValue);
-    navSide();
+    //navSide();
     navigationsSections();
     this.close();
+    this.init();
+    this.handlerForm();
   }
 
   //////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////// PRODUCTOS PARA SER RENDERIZADOS EN LAS CARD DEL CARRUSEL
   selectedProducts = []; // ARREGLO PARA LOS PRODUCTOS SELECIONADOS
+
+  init = () => {
+    if (this.selectedProducts.length === 0) {
+      let contenedor = document.querySelector(".total__price");
+
+      const contenedorEmpty = document.createElement("DIV");
+      contenedorEmpty.classList.add("empty");
+      const parrafo = document.createElement("P");
+      parrafo.classList.add("parrafo__empty");
+      parrafo.textContent = "Empty cart";
+      contenedorEmpty.appendChild(parrafo);
+
+      const contenedorCart = document.querySelector(".cart__container-product");
+
+      contenedorCart.appendChild(contenedorEmpty);
+    } else {
+      this.quantity();
+    }
+  };
+
+  quantity = () => {
+    console.log("cantidad");
+    let number = document.querySelector("#quantity");
+    const totalQuantity = this.selectedProducts.reduce(
+      (total, product) => total + product.quantity,
+      0
+    );
+
+    number.textContent = "";
+    number.textContent = totalQuantity;
+  };
 
   //////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////// NAV
@@ -223,7 +256,7 @@ class app {
   cartHTML(product) {
     const html = `
       <div class="cart__product">
-        <div class="cart__product-current">
+        <div class="cart__product-current" >
           <img
             class="product__image "
             src="${product.image}"
@@ -236,12 +269,22 @@ class app {
             src="image/iconos/trash.svg"
             alt=""
           />
+          <div class = "quantityPlussAndRest">
+          <i class="fa-solid fa-minus icon  icon-minus"></i>
+          <i class="fa-solid fa-plus  icon   icon-pluss"></i>
+          </div>
         </div>
     
         <div class="cart__product-price">
-          <p>${product.name} ${product.price} $ x ${product.quantity} = ${
+          <p>${product.name} <span class ="actuallyPrice">${
+      product.price
+    }</span> $ x <span class = "quantity"> ${
+      product.quantity
+    }</span>  = <span class = "totalPrice"> ${
       product.price * product.quantity
-    } </p>
+    }</span> 
+     
+    </p>
         </div>
       </div>
     `;
@@ -386,11 +429,12 @@ class app {
         let priceProduct = Number(
           card.querySelector("#priceProduct").textContent
         );
-        let quantity = 1;
+
+        //let quantity = 1;
 
         ////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////// CREANDO EL OBJETO CON LOS PRODUCTOS SELECIONADOS
-
+        /*
         const selectedProduct = {
           name: nameProduct,
           image: imageProduct,
@@ -398,22 +442,35 @@ class app {
           diners: dinersFor,
           price: priceProduct,
           quantity: quantity,
-        };
+        };*/
 
         const existingProduct = this.selectedProducts.find(
           (product) => product.name === nameProduct
         );
 
         if (existingProduct) {
-          existingProduct.quantity = existingProduct.quantity + 1;
+          existingProduct.quantity++;
+          //existingProduct.quantity = existingProduct.quantity + 1;
           //console.log(this.selectedProducts);
-          this.renderCart(this.selectedProducts);
+          //this.renderCart(this.selectedProducts);
         } else {
-          // GUARDANDO EN EL ARREGLO selectedProducts LOS PRODUCTOS SELECIONADO EN EL PASO ANTERIOR selectedProduct (OBJETO)
+          const selectedProduct = {
+            name: nameProduct,
+            image: imageProduct,
+            description: descriptionProduct,
+            diners: dinersFor,
+            price: priceProduct,
+            quantity: 1,
+          };
+
           this.selectedProducts.push(selectedProduct);
+          // GUARDANDO EN EL ARREGLO selectedProducts LOS PRODUCTOS SELECIONADO EN EL PASO ANTERIOR selectedProduct (OBJETO)
+          //this.selectedProducts.push(selectedProduct);
           //console.log(this.selectedProducts);
-          this.renderCart(this.selectedProducts);
+          //this.renderCart(this.selectedProducts);
         }
+
+        this.renderCart(this.selectedProducts);
 
         localStorage.setItem(
           "cartProducts",
@@ -427,12 +484,15 @@ class app {
   ////////////////////////////////////////////////////////// RENDER PARA EL CARRITO DE COMPRAS
   renderCart(products) {
     this.containerProducts.innerHTML = " ";
+    this.currentTotal = 0;
 
     products.forEach((product) => {
       const html = this.cartHTML(product);
+
       this.containerProducts.insertAdjacentHTML("beforeend", html);
     });
 
+    // ELIMINAR PRODUCTO
     let deleteProduct = document.querySelectorAll(".product__trash");
     deleteProduct.forEach((product) => {
       product.addEventListener("click", (e) => {
@@ -442,13 +502,17 @@ class app {
       });
     });
 
+    if (!this.selectedProducts.length) {
+      this.empty();
+    }
+
     const totalPrice = products.reduce((accumulator, product) => {
       return accumulator + product.price * product.quantity;
     }, 0);
 
     const totalPriceHTML = `
     <div class="total__price">
-    <span>Total Price = $ ${totalPrice}</span>
+    <span class ="total__account">Total Price = $ <span>${totalPrice}</span></span>
     <div class = "cart__actions">
     <button id="buy" type="button" class="btn btn-primary btn-lg">Buy</button></button>
     <button id="empty" type="button" class="btn btn-secondary btn-lg">Empty Cart</button>
@@ -463,21 +527,223 @@ class app {
 
     if (totalPrice > 0) {
       this.containerCart.insertAdjacentHTML("beforeend", totalPriceHTML);
+      this.init();
     }
 
-    const buy = document.querySelector("#buy");
-    const empty = document.querySelector("#empty");
+    //data-product-name="${product.name}"
 
-    buy.addEventListener("click", (e) => {
-      console.log("buy");
-    });
+    // AUMENTAR O DISMINUIR PRODUCTOS
 
-    empty.addEventListener("click", function (e) {
-      localStorage.removeItem("cartProducts"); // Elimina los productos del localStorage
-      newApp.selectedProducts = []; // Limpia los productos en la variable
-      newApp.renderCart([]); // Renderiza el carrito vacío
-    });
+    if (document.querySelector(".quantityPlussAndRest")) {
+      const increaseButton = document.querySelectorAll(".icon-pluss");
+      const decreaseButton = document.querySelectorAll(".icon-minus");
+
+      let currentTotal = +document.querySelector(".total__account span")
+        .textContent;
+
+      increaseButton.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const productCurrent = e.target.closest(".cart__product");
+          const quantityElement = productCurrent.querySelector(
+            ".cart__product-price"
+          );
+
+          let price =
+            +quantityElement.querySelector(".actuallyPrice").textContent;
+          let total = +quantityElement.querySelector(".totalPrice").textContent;
+          let cantidad =
+            +quantityElement.querySelector(".quantity").textContent;
+
+          cantidad = cantidad + 1;
+          total = total + price;
+
+          quantityElement.querySelector(".quantity").textContent =
+            Math.round(cantidad);
+          quantityElement.querySelector(".totalPrice").textContent =
+            Math.round(total);
+
+          currentTotal += price; // Actualizar el total
+          updateTotal(productCurrent); // Actualizar el elemento de total
+          this.quantity();
+        });
+      });
+
+      decreaseButton.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const productCurrent = e.target.closest(".cart__product");
+          const quantityElement = productCurrent.querySelector(
+            ".cart__product-price"
+          );
+
+          let price =
+            +quantityElement.querySelector(".actuallyPrice").textContent;
+          let total = +quantityElement.querySelector(".totalPrice").textContent;
+          let cantidad =
+            +quantityElement.querySelector(".quantity").textContent;
+
+          if (cantidad > 0) {
+            cantidad = cantidad - 1;
+            total = total - price;
+            quantityElement.querySelector(".quantity").textContent =
+              Math.round(cantidad);
+            quantityElement.querySelector(".totalPrice").textContent =
+              Math.round(total);
+
+            currentTotal -= price; // Actualizar el total
+            updateTotalRest(productCurrent); // Actualizar el elemento de total
+            this.quantity();
+          }
+        });
+      });
+
+      let updateTotal = (product) => {
+        if (document.querySelector(".total__account")) {
+          const totalDiv = document.querySelector(".total__account");
+          totalDiv.querySelector("span").textContent = Math.round(currentTotal);
+
+          let currentProduct = product.querySelector(
+            ".cart__product-current .product__name"
+          ).textContent;
+
+          // Actualiza la cantidad de productos en el arreglo this.selectedProducts
+          this.selectedProducts.forEach((product) => {
+            if (product.name === currentProduct) {
+              product.quantity++;
+            }
+          });
+          // Actualiza los datos en el localStorage
+          localStorage.setItem(
+            "cartProducts",
+            JSON.stringify(this.selectedProducts)
+          );
+        }
+      };
+
+      let updateTotalRest = (product) => {
+        if (document.querySelector(".total__account")) {
+          const totalDiv = document.querySelector(".total__account");
+
+          totalDiv.querySelector("span").textContent = Math.round(currentTotal);
+          let containerProduct = product;
+
+          let currentProduct = product.querySelector(
+            ".cart__product-current .product__name"
+          ).textContent;
+
+          // ENCONTRAR EL INDICE AL DENTRO DEL ARREGLO DE LOS PRODUCTOS SELECCIONADOS DEL PRODUCTO ACTUAL
+          // Encuentra el índice del producto en selectedProducts
+          const productIndex = this.selectedProducts.findIndex(
+            (product) => product.name === currentProduct
+          );
+
+          if (productIndex !== -1) {
+            if (this.selectedProducts[productIndex].quantity > 0) {
+              this.selectedProducts[productIndex].quantity--;
+
+              if (this.selectedProducts[productIndex].quantity === 0) {
+                // eliminar el producto del arreglo selectedProducts
+                this.selectedProducts.splice(productIndex, 1);
+
+                containerProduct.remove();
+                console.log(this.selectedProducts);
+                if (
+                  document.querySelector(".total__price") &&
+                  this.selectedProducts.length === 0
+                ) {
+                  let contenedor = document.querySelector(".total__price");
+                  contenedor.remove();
+
+                  const contenedorEmpty = document.createElement("DIV");
+                  contenedorEmpty.classList.add("empty");
+                  const parrafo = document.createElement("P");
+                  parrafo.classList.add("parrafo__empty");
+                  parrafo.textContent = "Empty cart";
+                  contenedorEmpty.appendChild(parrafo);
+
+                  const contenedorCart = document.querySelector(
+                    ".cart__container-product"
+                  );
+
+                  contenedorCart.appendChild(contenedorEmpty);
+                }
+              }
+            }
+          }
+
+          // Actualiza los datos en el localStorage
+          localStorage.setItem(
+            "cartProducts",
+            JSON.stringify(this.selectedProducts)
+          );
+
+          console.log(productIndex);
+
+          /*
+
+          // Actualiza la cantidad de productos en el arreglo this.selectedProducts
+          this.selectedProducts.forEach((product) => {
+            if (product.name === currentProduct) {
+              if (product.quantity > 0) {
+                product.quantity--;
+
+                if (product.quantity === 0) {
+                  product.quantity = 0;
+                  containerProduct.remove();
+
+                  console.log(containerProduct);
+                }
+              } else {
+                console.log("dsd");
+              }
+            }
+          });
+          // Actualiza los datos en el localStorage
+          localStorage.setItem(
+            "cartProducts",
+            JSON.stringify(this.selectedProducts)
+          );*/
+        }
+      };
+    }
+
+    if (document.querySelector("#empty")) {
+      const emptyButton = document.querySelector("#empty");
+      emptyButton.addEventListener("click", (e) => {
+        localStorage.removeItem("cartProducts");
+        this.selectedProducts = [];
+
+        this.quantity();
+        this.renderCart([]);
+
+        if (!this.selectedProducts.length) {
+          this.empty();
+        }
+      });
+    }
+
+    if (document.querySelector("#buy")) {
+      const buy = document.querySelector("#buy");
+      buy.addEventListener("click", this.comprar);
+    }
   }
+
+  comprar = () => {};
+
+  empty = () => {
+    let contenedor = document.querySelector(".total__price");
+    contenedor.remove();
+
+    const contenedorEmpty = document.createElement("DIV");
+    contenedorEmpty.classList.add("empty");
+    const parrafo = document.createElement("P");
+    parrafo.classList.add("parrafo__empty");
+    parrafo.textContent = "Empty cart";
+    contenedorEmpty.appendChild(parrafo);
+
+    const contenedorCart = document.querySelector(".cart__container-product");
+
+    contenedorCart.appendChild(contenedorEmpty);
+  };
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////// ELIMINAR PRODUCTOS DEL CARRITO
@@ -489,7 +755,9 @@ class app {
 
     if (findProductIndex !== -1) {
       let spliceIndex = this.selectedProducts.splice(findProductIndex, 1);
+      this.quantity();
       this.renderCart(this.selectedProducts);
+      console.log(this.selectedProducts);
       localStorage.setItem(
         "cartProducts",
         JSON.stringify(this.selectedProducts)
@@ -526,16 +794,11 @@ class app {
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////// FORMULARIO DE VALIDACION
 
-  handlerShowForm = (button, input) => {
-    input.addEventListener("input", (e) => {
-      showForm(button);
-    });
-  };
-
-  handlerForm = (show) => {
-    show.addEventListener("click", (e) => {
+  handlerForm = () => {
+    const form = document.querySelector(".form");
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-      validateForm();
+      validationForm();
     });
   };
 }

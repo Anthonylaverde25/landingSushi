@@ -103,4 +103,18 @@
   .model__navSide {
     display: none;
   }
+
+  .hero__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero__img img {
+    width: 70%;
+    height: 400px;
+    margin: 0 auto;
+    /*
+    height: 400px;
+    width: 400px;*/
+  }
 }

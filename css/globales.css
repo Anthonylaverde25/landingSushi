@@ -87,7 +87,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0.6rem;
+  /*padding: 0.6rem;*/
   border: 1px solid beige;
 }
 
@@ -186,6 +186,7 @@
 .items {
   cursor: pointer;
 }
+
 .activeNav {
   display: flex;
   align-items: center;
@@ -302,9 +303,11 @@
   transition: background-color 0.3s;
 }
 @media (min-width: 1122px) {
+  /*
   .navFixed {
     position: unset;
-  }
+    border: 1px solid;
+  }*/
 
   .btn__contact {
     padding: 5px;
@@ -335,4 +338,147 @@
 .card {
   --bs-card-border-width: 0; /* Establece el ancho del borde a 0 para eliminarlo */
   --bs-card-border-color: transparent; /* Establece el color del borde a transparente para ocultarlo */
+}
+
+@media (max-width: 1337px) {
+  .hero__container-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-top: 1.5rem;
+  }
+
+  .model__navSide {
+    display: none;
+    background-color: red;
+  }
+
+  .hero__img {
+  }
+}
+
+/* refactorizando carrito de compras */
+
+.quantityPlussAndRest {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 70px;
+  padding: 7px;
+
+  i:hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  @media (min-width: 1122px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem;
+    width: auto;
+
+    i {
+      display: flex;
+      padding: 0.5rem;
+    }
+
+    i:hover {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 200px;
+  margin: 0 auto;
+
+  .parrafo__empty {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem;
+  }
+}
+
+.nav__container-loginAndCart {
+  .cart__quantity {
+    position: relative;
+
+    .quantity {
+      font-size: 1rem;
+      font-weight: bolder;
+      color: #ff8f1e;
+    }
+  }
+}
+
+/*
+
+.cart__quantity {
+  .quantity {
+    background-color: red;
+  }
+  background-color: red;
+  border: 1px solid red;
+}*/
+
+/* refactorizando estilos del formulario */
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+form label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.success__message {
+  display: block;
+  padding: 0.5rem;
+
+  .message {
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.contact {
+  @media (min-width: 1122px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1;
+  }
+
+  gap: 1rem;
+
+  .map {
+    @media (min-width: 1122px) {
+      height: 100%;
+      width: 100%;
+      border-radius: 1rem;
+      margin: 0 auto;
+    }
+
+    height: 300px;
+    width: 100%;
+    border-radius: 1rem;
+    margin-top: 1rem;
+  }
+
+  .ubication {
+    color: black;
+    font-weight: bold;
+    font-size: 1rem;
+  }
 }

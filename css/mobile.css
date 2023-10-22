@@ -1,6 +1,11 @@
 .header {
   height: 100vh;
+  width: 100%;
+  @media (min-width: 1122px) {
+    width: 100%;
+  }
 }
+
 .container__2 {
   width: 100%;
   margin: 0 auto;
@@ -78,12 +83,12 @@
 .hero__img {
   height: 200px;
 }
-
+/*
 .hero__img img {
   display: block;
   width: 300px;
   margin: 0 auto;
-}
+}*/
 
 .hero {
   padding: 1rem;
@@ -143,6 +148,7 @@
 }
 
 .hero__img img {
+  width: 90%;
   top: -30%;
   position: absolute;
 }
@@ -256,7 +262,8 @@
 .carousel__container {
   width: 90%;
   max-width: 1130px;
-  min-width: 315px;
+  /*min-width: 315px;*/
+  min-width: 300px;
   width: auto;
   margin: 0 auto;
   overflow: hidden;
@@ -311,7 +318,7 @@
 /* RECIENTE */
 
 .recently {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .recently__title-container {
@@ -369,17 +376,27 @@
 .recently__img {
   display: flex;
   justify-content: center;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .recently__img img {
   transform: rotate(-14.463deg);
-
+  width: 200px;
+  height: 200px;
+  /*
   width: 300px;
-  height: 300px;
+  height: 300px;*/
 }
 
 .contact {
+  width: 90%;
+  margin: 0 auto;
   padding: 1rem;
+
+  @media (min-width: 1122px) {
+    width: 100%;
+  }
 }
 
 .contact__container {
@@ -391,7 +408,6 @@
   padding: 0.5em;
   background: #2f221cb7;
   border-radius: 10px;
-  width: auto;
 }
 
 .contact__title {
