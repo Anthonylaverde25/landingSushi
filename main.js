@@ -1,8 +1,6 @@
-//import { validateForm } from "./validations.js";
 import { validationForm } from "./validations.js";
 import { imageObserver } from "./loadImage.js";
 import { navigationsSections } from "./navigationSections.js";
-//import { navSide } from "./navSide.js";
 
 class app {
   ////////////////////////////////////////////////////////////////////////////////
@@ -62,10 +60,8 @@ class app {
       });
     });
     this.showNumberDiners(this.btnNumberOf);
-    //this.handlerForm(this.showForm);
-    //this.handlerShowForm(this.buttonShow, this.inputForm);
+
     this.nav(this.navigationsItems, this.filterValue);
-    //navSide();
     navigationsSections();
     this.close();
     this.init();
@@ -430,29 +426,12 @@ class app {
           card.querySelector("#priceProduct").textContent
         );
 
-        //let quantity = 1;
-
-        ////////////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////// CREANDO EL OBJETO CON LOS PRODUCTOS SELECIONADOS
-        /*
-        const selectedProduct = {
-          name: nameProduct,
-          image: imageProduct,
-          description: descriptionProduct,
-          diners: dinersFor,
-          price: priceProduct,
-          quantity: quantity,
-        };*/
-
         const existingProduct = this.selectedProducts.find(
           (product) => product.name === nameProduct
         );
 
         if (existingProduct) {
           existingProduct.quantity++;
-          //existingProduct.quantity = existingProduct.quantity + 1;
-          //console.log(this.selectedProducts);
-          //this.renderCart(this.selectedProducts);
         } else {
           const selectedProduct = {
             name: nameProduct,
@@ -464,10 +443,6 @@ class app {
           };
 
           this.selectedProducts.push(selectedProduct);
-          // GUARDANDO EN EL ARREGLO selectedProducts LOS PRODUCTOS SELECIONADO EN EL PASO ANTERIOR selectedProduct (OBJETO)
-          //this.selectedProducts.push(selectedProduct);
-          //console.log(this.selectedProducts);
-          //this.renderCart(this.selectedProducts);
         }
 
         this.renderCart(this.selectedProducts);
@@ -529,8 +504,6 @@ class app {
       this.containerCart.insertAdjacentHTML("beforeend", totalPriceHTML);
       this.init();
     }
-
-    //data-product-name="${product.name}"
 
     // AUMENTAR O DISMINUIR PRODUCTOS
 
@@ -677,31 +650,6 @@ class app {
           );
 
           console.log(productIndex);
-
-          /*
-
-          // Actualiza la cantidad de productos en el arreglo this.selectedProducts
-          this.selectedProducts.forEach((product) => {
-            if (product.name === currentProduct) {
-              if (product.quantity > 0) {
-                product.quantity--;
-
-                if (product.quantity === 0) {
-                  product.quantity = 0;
-                  containerProduct.remove();
-
-                  console.log(containerProduct);
-                }
-              } else {
-                console.log("dsd");
-              }
-            }
-          });
-          // Actualiza los datos en el localStorage
-          localStorage.setItem(
-            "cartProducts",
-            JSON.stringify(this.selectedProducts)
-          );*/
         }
       };
     }

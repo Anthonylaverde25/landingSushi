@@ -87,8 +87,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  /*padding: 0.6rem;*/
-  border: 1px solid beige;
 }
 
 .cart__product-current {
@@ -97,7 +95,6 @@
   gap: 10px;
   justify-content: space-around;
   width: 100%;
-  border: 1px solid;
 }
 
 .cart__product-current img {
@@ -124,6 +121,7 @@
   font-weight: bold;
   padding: 0.5rem;
   text-transform: uppercase;
+  border-bottom: 1px solid white;
 }
 
 .product__name {
@@ -354,9 +352,6 @@
     display: none;
     background-color: red;
   }
-
-  .hero__img {
-  }
 }
 
 /* refactorizando carrito de compras */
@@ -420,18 +415,6 @@
   }
 }
 
-/*
-
-.cart__quantity {
-  .quantity {
-    background-color: red;
-  }
-  background-color: red;
-  border: 1px solid red;
-}*/
-
-/* refactorizando estilos del formulario */
-
 .form-group {
   margin-bottom: 1rem;
 }
@@ -481,4 +464,7 @@ form label {
     font-weight: bold;
     font-size: 1rem;
   }
+}
+.leaflet-container .leaflet-control-attribution {
+  display: none !important;
 }

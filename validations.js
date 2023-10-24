@@ -172,6 +172,7 @@ const Latitud = 34.601651;
 const Longitud = 58.383909;
 
 var map = L.map("map").setView([-Latitud, -Longitud], 14);
+map.removeControl(map.zoomControl);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
@@ -182,3 +183,13 @@ L.marker([-Latitud, -Longitud])
   .addTo(map)
   .bindPopup(`<p class="ubication">Encuentranos en Buenos aires</p>`)
   .openPopup();
+
+L.control.zoom({});
+
+const prueba = document.querySelector(
+  ".leaflet-control-zoom .leaflet-bar .leaflet-control"
+);
+
+if (prueba) {
+  prueba.remove();
+}
